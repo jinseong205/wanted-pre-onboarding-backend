@@ -15,7 +15,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
     show-sql: true
     open-in-view: true
 
@@ -23,3 +23,10 @@ logging:
   level:
     '[com.example.server]': INFO
     '[org.hibernate.type]': TRACE
+    
+jwt:
+  token:
+    header: DEMO-AUTH
+    issuer: demo
+    secret: 2940b03656d14eb2b0724b3029ead60c
+    expiry-seconds: 1800000                
