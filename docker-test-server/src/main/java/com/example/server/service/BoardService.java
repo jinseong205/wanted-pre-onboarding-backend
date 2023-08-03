@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.UUID;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -34,53 +35,44 @@ public class BoardService {
 	private final BoardRepository boardRepository;
 	private final UserRepository userRepository;
 
+	
 	@Transactional
-	public void saveBoard(Board board) { // title, content
+	public void saveBoard(Board board, User user) { // title, content
 		boardRepository.save(board);
 	}
 
+	
 	@Transactional(readOnly = true)
 	public Page<Board> findBoardAll(Pageable pageable) {
 		return boardRepository.findAll(pageable);
 	}
-
+	
 	@Transactional(readOnly = true)
-	public Board boardDetail(Long id) {
-		return boardRepository.findById(id).orElseThrow(() -> {
-			return new IllegalArgumentException("해당 글을 찾을수 었습니다.");
-		});
+	public Board findBoard(Long id) {
+		return boardRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("해당 게시물을 찾을 수 없습니다."));
 	}
 
 	@Transactional
-	public void deleteBoard(Long id, User user) throws Exception {
-		Board board = boardRepository.findById(id).orElseThrow(() -> {
-			return new IllegalArgumentException("글 삭제 실패 : 게시글 id를 찾을 수 없습니다");
-		});
+	public void updateBoard(Long id, Board reqBoard, User user) throws Exception {
 
-		if (!board.getCrtName().equals(user.getUsername())){
-			throw new Exception("글 삭제 실패 : 삭제 권한이 없습니다.");
-		}
+		Board board = boardRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("해당 게시물을 찾을 수 없습니다.")); 
+		if (!board.getCrtName().equals(user.getUsername())){throw new Exception("글 수정 실패 : 수정 권한이 없습니다.");}
+
+		board.setTitle(reqBoard.getTitle());
+		board.setContent(reqBoard.getContent());
+	}
+	
+	
+	@Transactional
+	public void deleteBoard(Long id, User user) throws Exception {
+		Board board = boardRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("해당 게시물을 찾을 수 없습니다.")); 
+		if (!board.getCrtName().equals(user.getUsername())){throw new Exception("글 삭제 실패 : 수정 권한이 없습니다.");}
 
 		boardRepository.deleteById(id);
 	}
 
-	@Transactional
-	public void updateBoard(Long id, Board requestBoard, User user) throws Exception {
+	
 
-		Board board = boardRepository.findById(id).orElseThrow(() -> {
-			return new IllegalArgumentException("해당 글을 찾을수 었습니다.");
-		}); // 영속화 완료
-
-		if (!board.getCrtName().equals(user.getUsername())){
-			throw new Exception("글 수정 실패 : 수정 권한이 없습니다.");
-		}
-
-		board.setTitle(requestBoard.getTitle());
-		board.setContent(requestBoard.getContent());
-
-		// 해당 함수로 종료시에 Service가 종료될 때 트랜잭션이 종료됩니다.
-		// 이때 더티 체킹 - 자동 업데이트가 됨. db flush
-	}
 
 
 }
