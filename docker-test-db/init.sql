@@ -26,6 +26,22 @@ create table board_tb (
   content clob,
   title varchar(100) not null,
   primary key (board_id)
-  )
+  );
 
   
+  insert into board_tb(title, content, crt_id, updt_id, crt_dt, updt_dt )
+  values ('게시물1', '게시물1','test1@test.com','test1@test.com', now(), now();
+
+  insert into board_tb(title, content, crt_id, updt_id, crt_dt, updt_dt )
+  values ('게시물2', '게시물2','test1@test.com','test1@test.com', now(), now();
+  
+  insert into board_tb(title, content, crt_id, updt_id, crt_dt, updt_dt )
+  values ('게시물3', '게시물3','test1@test.com','test1@test.com', now(), now();
+  
+  insert into board_tb(title, content, crt_id, updt_id, crt_dt, updt_dt )
+  values ('게시물4', '게시물4','test1@test.com','test1@test.com', now(), now();
+  
+  insert into board_tb(title, content, crt_id, updt_id, crt_dt, updt_dt )
+  values ('게시물5', '게시물5','test1@test.com','test1@test.com', now(), now();
+  
+

@@ -34,12 +34,6 @@ public class UserController {
     public ResponseEntity<?> main() {
         return ResponseEntity.ok().body("main");
     }
-
-    @GetMapping("/user")
-    public ResponseEntity<?> findAll() {
-        List<User> userList = userRepository.findAll();
-        return ResponseEntity.ok().body(userList);
-    }
     
 	@PostMapping("/api/join")
 	public ResponseEntity<?> join(@RequestBody @Valid UserFormDto userFormDto, BindingResult bindingResult)
