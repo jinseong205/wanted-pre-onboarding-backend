@@ -65,7 +65,7 @@ public class BoardController {
 	public ResponseEntity<?> deleteBoard(@PathVariable Long id,  @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {
 		if(principalDetails == null) {throw new Exception("로그인 되어있지 않습니다.");}
 		boardService.deleteBoard(id, principalDetails.getUser());
-		return new ResponseEntity<>(new ResultDto("게시물 삭제 성공"), HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(new ResultDto("게시물 삭제 성공"), HttpStatus.OK);
 	}
 
 	
