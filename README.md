@@ -28,6 +28,7 @@ docker-compose up -d
 - API 데모영상 링크
   -
 - API 명세
+- 
   [POST] /api/join - 회원가입
     ```
     (req) body - username , password
