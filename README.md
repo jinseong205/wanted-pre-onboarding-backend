@@ -1,7 +1,6 @@
 
 - 성명
-
-  정진성
+  -정진성
 - 실행방법
     ```
     sudo su
@@ -27,7 +26,7 @@ docker-compose up -d
   board - id, title, content, crt_id, updt_id, crt_dt, updt_dt
   ```
 - API 데모영상 링크
-
+  - https://www.youtube.com/watch?v=RkqPbDohhh0
   
 - API 명세
   
