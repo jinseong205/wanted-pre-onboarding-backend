@@ -16,7 +16,7 @@ public class UserFormDto {
 	private String username;	
 	
 	@NotBlank(message = "비밀번호는를 입려해주세요.")
-	@Length(min=8, message = "패스워드는 8자 이상으로 입력하세요.")
+	@Length(min=8, max=100, message = "패스워드는 8자 이상으로 입력하세요.")
 	private String password;	
 
 
