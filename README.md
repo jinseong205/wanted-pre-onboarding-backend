@@ -26,9 +26,10 @@ docker-compose up -d
   board - id, title, content, crt_id, updt_id, crt_dt, updt_dt
   ```
 - API 데모영상 링크
-  -
+
+  
 - API 명세
-- 
+  
   [POST] /api/join - 회원가입
     ```
     (req) body - username , password
