@@ -13,8 +13,6 @@
 - 호출 방법
   - ex) localhost:8080/api/boards
   - ex) http://프리온보딩.웹.한국:8080/api/boards
-- 실행 명령어
-  - docker-compose up -d
 - 추가 기능
   - 테스트 코드 추가
   - docker compose를 이용하여 환경 구성
